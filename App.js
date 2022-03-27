@@ -1,8 +1,17 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  Alert,
+  View,
+  FlatList,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import React, {useState} from 'react';
 import Header from './src/reuseables/Header';
 import ToDoItem from './src/reuseables/ToDoItem';
 import AddItem from './src/reuseables/AddItem';
+import Sandbox from './src/reuseables/Sandbox';
 
 const App = () => {
   const [todos, setTodos] = useState([
@@ -19,34 +28,43 @@ const App = () => {
     });
   };
 
-  // const onAdd = (val) => {
-  //   setTodos(val=>{
-  //     return [
-  //       {val:val},
-  //       ...prevTodos
-  //     ]
-  //   })
-  // };
+  const onAdd = addText => {
+    if (addText.length > 3) {
+      setTodos(prevTodos => {
+        return [{text: addText, key: Math.random().toString()}, ...prevTodos];
+      });
+    } else {
+      Alert.alert('OOPS!', 'Todo title must be of more than 3 characters', [
+        {text: 'OK', onPress: () => console.log('understood, alert closed.')},
+      ]);
+    }
+  };
   return (
-    <View style={styles.container}>
-      {/* header */}
-      <Header />
+    // <Sandbox/>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+        console.log('keyborad dismiss');
+      }}>
+      <View style={styles.container}>
+        {/* header */}
+        <Header />
 
-      {/* to-do form */}
-      <View style={styles.content}>
-        
-        <AddItem />
-        {/* list */}
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({item}) => (
-              <ToDoItem listItem={item} onClick={pressHandler} />
-            )}
-          />
+        {/* to-do form */}
+        <View style={styles.content}>
+          <AddItem onClick={onAdd} />
+          {/* list */}
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({item}) => (
+                <ToDoItem listItem={item} onClick={pressHandler} />
+              )}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -55,10 +73,12 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'red',
   },
   content: {
+    flex:1,
     padding: 20,
-    // backgroundColor: 'lightgray',
   },
+  list:{
+    flex:1, 
+  }
 });

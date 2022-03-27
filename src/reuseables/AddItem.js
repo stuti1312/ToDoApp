@@ -7,10 +7,9 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-const AddItem = () => {
+const AddItem = ({onClick}) => {
   const [textValue, setTextValue] = useState('');
   const changeHandler = val => {
-    console.log('====================================');
     console.log(val);
     setTextValue(val);
   };
@@ -23,8 +22,8 @@ const AddItem = () => {
       />
       <TouchableOpacity
         style={styles.addBtn}
-        onPress={() => console.log('item added')}>
-        <Text>ADD TO-DO ITEM</Text>
+        onPress={()=>onClick(textValue)}>
+        <Text style={{color:"white"}}>ADD TO-DO ITEM</Text>
       </TouchableOpacity>
     </View>
   );
