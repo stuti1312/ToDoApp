@@ -6,11 +6,13 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React, {useState} from 'react';
+import {colors} from '../globalStyles';
+import {sharedConstants} from '../constants';
 
 const AddItem = ({onClick}) => {
   const [textValue, setTextValue] = useState('');
   const changeHandler = val => {
-    console.log(val);
+    // console.log(val);
     setTextValue(val);
   };
   return (
@@ -22,8 +24,8 @@ const AddItem = ({onClick}) => {
       />
       <TouchableOpacity
         style={styles.addBtn}
-        onPress={()=>onClick(textValue)}>
-        <Text style={{color:"white"}}>ADD TO-DO ITEM</Text>
+        onPress={() => onClick(textValue)}>
+        <Text style={styles.addBtnTitle}>{sharedConstants.btnTitle}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,15 +42,16 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgray',
+    borderBottomColor: colors.lightGray,
     paddingVertical: 5,
   },
   addBtn: {
     borderWidth: 1,
     borderRadius: 3,
-    borderColor: 'white',
-    backgroundColor: 'coral',
+    borderColor: colors.white,
+    backgroundColor: colors.orange,
     padding: 10,
     alignItems: 'center',
   },
+  addBtnTitle: {color: colors.white},
 });

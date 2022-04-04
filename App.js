@@ -44,7 +44,7 @@ const App = () => {
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
-        console.log('keyborad dismiss');
+        // console.log('keyborad dismiss');
       }}>
       <View style={styles.container}>
         {/* header */}
@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   content: {
-    flex:1,
+    flex: 1,
     padding: 20,
   },
-  list:{
-    flex:1, 
-  }
+  list: {
+    flex: 1,
+  },
 });

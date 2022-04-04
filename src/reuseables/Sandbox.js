@@ -1,5 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {colors} from '../globalStyles';
 
 const Sandbox = () => {
   return (
@@ -16,7 +17,6 @@ export default Sandbox;
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     padding: 20,
     flexDirection: 'row',
     backgroundColor: 'skyblue',
@@ -24,22 +24,22 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   box1: {
-    flex:3,
-    backgroundColor: 'red',
+    flex: 3,
+    backgroundColor: colors.lightGray,
     padding: 10,
   },
   box2: {
-    flex:1,
-    backgroundColor: 'orange',
+    flex: 1,
+    backgroundColor: colors.orange,
     padding: 20,
   },
   box3: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'yellow',
     padding: 30,
   },
   box4: {
-    flex:1,
+    flex: 1,
     backgroundColor: 'pink',
     padding: 40,
   },
